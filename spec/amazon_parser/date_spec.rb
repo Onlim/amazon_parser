@@ -17,7 +17,7 @@ RSpec.describe Onlim::AmazonParser::Date do
 
     context 'when input is a decade' do
       it 'returns proper period' do
-        expect(subject.new('201X').call).to eq('2011-01-01/2019-12-31')
+        expect(subject.new('201X').call).to eq('2010-01-01/2019-12-31')
       end
     end
 

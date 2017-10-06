@@ -28,7 +28,7 @@ module Onlim
       end
 
       def year_or_decade
-        start_year = decade? ? @year.tr('X', '1').to_i : @year.to_i
+        start_year = decade? ? @year.tr('X', '0').to_i : @year.to_i
         end_year   = decade? ? @year.tr('X', '9').to_i : @year.to_i
 
         (::Date.new(start_year, 1, 1)..::Date.new(end_year, -1, -1))
