@@ -1,20 +1,27 @@
 module Onlim
   module AmazonParser
     class Date
-      SEASONS = %w[
-        SP
-        SU
-        FA
-        WI
-      ].freeze
+      SEASONS = {
+        'SP' => [3, 5],
+        'SU' => [6, 8],
+        'FA' => [9, 11],
+        'WI' => [12, 2]
+      }.freeze
 
       def initialize(input)
         @input              = input
         @year, @month, @day = @input.split('-')
+        @config             = AmazonParser.config
       end
 
       def call
-        resolve.to_s.gsub('..', '/')
+        @response = resolve
+
+        if @config.hash_response
+          { key => value }
+        else
+          value
+        end
       end
 
       private
@@ -22,9 +29,21 @@ module Onlim
       def resolve
         return ::Date.today   if @year == 'PRESENT_REF'
         return year_or_decade if @month.nil? && @day.nil?
-        return season_period  if SEASONS.include?(@month)
+        return season_period  if SEASONS.keys.include?(@month)
 
         parse_date
+      end
+
+      def key
+        range? ? @config.date_range_key : @config.date_key
+      end
+
+      def value
+        @response.to_s.gsub('..', '/')
+      end
+
+      def range?
+        @response.is_a?(Range)
       end
 
       def year_or_decade
@@ -38,7 +57,12 @@ module Onlim
         !@year.index('X').nil?
       end
 
-      def season_period; end
+      def season_period
+        start_month, end_month = SEASONS[@month]
+        year = start_month < end_month ? @year.to_i : @year.to_i + 1
+
+        (::Date.new(@year.to_i, start_month, 1)..::Date.new(year, end_month, -1))
+      end
 
       def parse_date
         return week if @month[0] == 'W'
