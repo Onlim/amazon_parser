@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'onlim/amazon_parser/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'onlim_amazon_parser'
+  spec.name          = 'onlim-amazon_parser'
   spec.version       = Onlim::AmazonParser::VERSION
   spec.authors       = ['Onlim Team']
   spec.email         = ['dev@onlim.com']
