@@ -1,5 +1,6 @@
 module Onlim
   module AmazonParser
+    # AMAZON.DATE
     class Date
       SEASONS = {
         'SP' => [3, 5],
@@ -17,11 +18,7 @@ module Onlim
       def call
         @response = resolve
 
-        if @config.hash_response
-          { key => value }
-        else
-          value
-        end
+        { key => value }
       end
 
       private
