@@ -2,6 +2,7 @@ require 'date'
 require 'onlim/amazon_parser/configuration'
 require 'onlim/amazon_parser/version'
 require 'onlim/amazon_parser/date'
+require 'onlim/amazon_parser/duration'
 
 module Onlim
   # :nodoc
