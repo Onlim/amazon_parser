@@ -1,5 +1,6 @@
 module Onlim
   module AmazonParser
+    # AMAZON.TIME
     class Time
       TIME_PERIODS = {
         'MO' => '06:00:00/12:00:00',

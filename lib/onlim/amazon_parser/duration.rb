@@ -33,7 +33,7 @@ module Onlim
           seconds += components[period].to_i * PERIODS[period]
         end
 
-        return -(seconds) if components[:sign]
+        return -seconds if components[:sign]
         seconds
       end
 
