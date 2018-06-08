@@ -46,7 +46,13 @@ RSpec.describe Onlim::AmazonParser::Date do
       end
     end
 
-    context 'when input is specifi date' do
+    context 'when input refers to a month' do
+      it 'returns proper period' do
+        expect(subject.new('2017-07').call).to eq('date-period' => '2017-07-01/2017-07-31')
+      end
+    end
+
+    context 'when input is specific date' do
       it 'returns proper date' do
         expect(subject.new('2017-10-06').call).to eq('date' => '2017-10-06')
       end
