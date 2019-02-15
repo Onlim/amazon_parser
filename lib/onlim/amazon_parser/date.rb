@@ -63,6 +63,7 @@ module Onlim
 
       def parse_date
         return week if @month[0] == 'W'
+        return full_month if @month[0] != 'W' && @day.nil?
 
         ::Date.parse(@input)
       end
@@ -74,6 +75,10 @@ module Onlim
         start_week += 5 if @day == 'WE'
 
         (start_week..end_week)
+      end
+
+      def full_month
+        (::Date.new(@year.to_i, @month.to_i, 1)..::Date.new(@year.to_i, @month.to_i, -1))
       end
     end
   end
