@@ -10,7 +10,9 @@ end
 
 group :test do
   gem 'rspec', '~> 3.9'
+  gem 'rspec_junit_formatter', '~> 0.4'
   gem 'rubocop', '~> 0.75'
+  gem 'rubocop-rspec', '~> 1.36'
   gem 'simplecov', '~> 0.17.1'
 end
 
