@@ -23,3 +23,6 @@ AllCops:
 
 Metrics/LineLength:
   Max: 100
+
+Documentation:
+  Enabled: false
