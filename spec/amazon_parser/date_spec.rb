@@ -40,6 +40,18 @@ RSpec.describe Onlim::AmazonParser::Date do
       end
     end
 
+    context 'when input refers to a week number less than < 10 without leading zero' do
+      it 'returns proper period' do
+        expect(subject.new('2020-W9').call).to eq('date-period' => '2020-03-02/2020-03-08')
+      end
+    end
+
+    context 'when input refers to a week number less than < 10 with leading zero' do
+      it 'returns proper period' do
+        expect(subject.new('2020-W09').call).to eq('date-period' => '2020-03-02/2020-03-08')
+      end
+    end
+
     context 'when input refers to a week weekend' do
       it 'returns proper period' do
         expect(subject.new('2017-W52-WE').call).to eq('date-period' => '2017-12-30/2017-12-31')

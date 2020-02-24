@@ -69,7 +69,7 @@ module Onlim
       end
 
       def week
-        start_week = ::Date.parse(@input)
+        start_week = ::Date.strptime(@input, '%Y-W%W')
 
         end_week   = start_week + 6
         start_week += 5 if @day == 'WE'
